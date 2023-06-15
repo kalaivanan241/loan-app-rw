@@ -17,6 +17,7 @@ export const QUERY = gql`
       bankName
       processedData
       emiDate
+      currency
     }
   }
 `
@@ -30,6 +31,7 @@ const UPDATE_LOAN_MUTATION = gql`
       bankName
       processedData
       emiDate
+      currency
     }
   }
 `

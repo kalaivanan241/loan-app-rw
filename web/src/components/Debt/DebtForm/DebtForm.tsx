@@ -4,13 +4,12 @@ import {
   FieldError,
   Label,
   TextField,
-  NumberField,
+  RadioField,
   DatetimeLocalField,
   Submit,
-  RadioField,
 } from '@redwoodjs/forms'
 
-import type { EditLoanById, UpdateLoanInput } from 'types/graphql'
+import type { EditDebtById, UpdateDebtInput } from 'types/graphql'
 import type { RWGqlError } from '@redwoodjs/forms'
 
 const formatDatetime = (value) => {
@@ -19,23 +18,23 @@ const formatDatetime = (value) => {
   }
 }
 
-type FormLoan = NonNullable<EditLoanById['loan']>
+type FormDebt = NonNullable<EditDebtById['debt']>
 
-interface LoanFormProps {
-  loan?: EditLoanById['loan']
-  onSave: (data: UpdateLoanInput, id?: FormLoan['id']) => void
+interface DebtFormProps {
+  debt?: EditDebtById['debt']
+  onSave: (data: UpdateDebtInput, id?: FormDebt['id']) => void
   error: RWGqlError
   loading: boolean
 }
 
-const LoanForm = (props: LoanFormProps) => {
-  const onSubmit = (data: FormLoan) => {
-    props.onSave(data, props?.loan?.id)
+const DebtForm = (props: DebtFormProps) => {
+  const onSubmit = (data: FormDebt) => {
+    props.onSave(data, props?.debt?.id)
   }
 
   return (
     <div className="rw-form-wrapper">
-      <Form<FormLoan> onSubmit={onSubmit} error={props.error}>
+      <Form<FormDebt> onSubmit={onSubmit} error={props.error}>
         <FormError
           error={props.error}
           wrapperClassName="rw-form-error-wrapper"
@@ -53,13 +52,32 @@ const LoanForm = (props: LoanFormProps) => {
 
         <TextField
           name="amount"
-          defaultValue={props.loan?.amount}
+          defaultValue={props.debt?.amount}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
           validation={{ valueAsNumber: true, required: true }}
         />
 
         <FieldError name="amount" className="rw-field-error" />
+
+        <Label
+          name="to"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          To
+        </Label>
+
+        <TextField
+          name="to"
+          defaultValue={props.debt?.to}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
+
+        <FieldError name="to" className="rw-field-error" />
+
         <Label
           name="currency"
           className="rw-label"
@@ -73,7 +91,7 @@ const LoanForm = (props: LoanFormProps) => {
             id="debt-currency-0"
             name="currency"
             defaultValue="HKD"
-            defaultChecked={props.loan?.currency?.includes('HKD')}
+            defaultChecked={props.debt?.currency?.includes('HKD')}
             className="rw-input"
             errorClassName="rw-input rw-input-error"
           />
@@ -85,7 +103,7 @@ const LoanForm = (props: LoanFormProps) => {
             id="debt-currency-1"
             name="currency"
             defaultValue="INR"
-            defaultChecked={props.loan?.currency?.includes('INR')}
+            defaultChecked={props.debt?.currency?.includes('INR')}
             className="rw-input"
             errorClassName="rw-input rw-input-error"
           />
@@ -95,94 +113,40 @@ const LoanForm = (props: LoanFormProps) => {
         <FieldError name="currency" className="rw-field-error" />
 
         <Label
-          name="emi"
+          name="date"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Emi
+          Date
+        </Label>
+
+        <DatetimeLocalField
+          name="date"
+          defaultValue={formatDatetime(props.debt?.date)}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
+
+        <FieldError name="date" className="rw-field-error" />
+
+        <Label
+          name="interestRate"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Interest rate
         </Label>
 
         <TextField
-          name="emi"
-          defaultValue={props.loan?.emi}
+          name="interestRate"
+          defaultValue={props.debt?.interestRate}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
           validation={{ valueAsNumber: true, required: true }}
         />
 
-        <FieldError name="emi" className="rw-field-error" />
-
-        <Label
-          name="months"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Months
-        </Label>
-
-        <NumberField
-          name="months"
-          defaultValue={props.loan?.months}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
-
-        <FieldError name="months" className="rw-field-error" />
-
-        <Label
-          name="bankName"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Bank name
-        </Label>
-
-        <TextField
-          name="bankName"
-          defaultValue={props.loan?.bankName}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
-
-        <FieldError name="bankName" className="rw-field-error" />
-
-        <Label
-          name="processedData"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Processed data
-        </Label>
-
-        <DatetimeLocalField
-          name="processedData"
-          defaultValue={formatDatetime(props.loan?.processedData)}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
-
-        <FieldError name="processedData" className="rw-field-error" />
-
-        <Label
-          name="emiDate"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Emi date
-        </Label>
-
-        <NumberField
-          name="emiDate"
-          defaultValue={props.loan?.emiDate}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
-
-        <FieldError name="emiDate" className="rw-field-error" />
+        <FieldError name="interestRate" className="rw-field-error" />
 
         <div className="rw-button-group">
           <Submit disabled={props.loading} className="rw-button rw-button-blue">
@@ -194,4 +158,4 @@ const LoanForm = (props: LoanFormProps) => {
   )
 }
 
-export default LoanForm
+export default DebtForm

@@ -2,7 +2,7 @@ import { Link, routes, navigate } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
-import { timeTag } from 'src/lib/formatters'
+import { formatEnum, timeTag } from 'src/lib/formatters'
 
 import type { DeleteLoanMutationVariables, FindLoanById } from 'types/graphql'
 
@@ -60,6 +60,10 @@ const Loan = ({ loan }: Props) => {
             <tr>
               <th>Months</th>
               <td>{loan.months}</td>
+            </tr>
+            <tr>
+              <th>Currency</th>
+              <td>{formatEnum(loan.currency)}</td>
             </tr>
             <tr>
               <th>Bank name</th>

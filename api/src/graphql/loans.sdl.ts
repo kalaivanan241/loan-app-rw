@@ -7,6 +7,12 @@ export const schema = gql`
     bankName: String!
     processedData: DateTime!
     emiDate: Int!
+    currency: Currency!
+  }
+
+  enum Currency {
+    HKD
+    INR
   }
 
   type Query {
@@ -21,6 +27,7 @@ export const schema = gql`
     bankName: String!
     processedData: DateTime!
     emiDate: Int!
+    currency: Currency!
   }
 
   input UpdateLoanInput {
@@ -30,6 +37,7 @@ export const schema = gql`
     bankName: String
     processedData: DateTime
     emiDate: Int
+    currency: Currency!
   }
 
   type Mutation {

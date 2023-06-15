@@ -2,23 +2,23 @@ import { Link, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
-import { QUERY } from 'src/components/Loan/LoansCell'
+import { QUERY } from 'src/components/Debt/DebtsCell'
 import { formatEnum, timeTag, truncate } from 'src/lib/formatters'
 
-import type { DeleteLoanMutationVariables, FindLoans } from 'types/graphql'
+import type { DeleteDebtMutationVariables, FindDebts } from 'types/graphql'
 
-const DELETE_LOAN_MUTATION = gql`
-  mutation DeleteLoanMutation($id: Int!) {
-    deleteLoan(id: $id) {
+const DELETE_DEBT_MUTATION = gql`
+  mutation DeleteDebtMutation($id: Int!) {
+    deleteDebt(id: $id) {
       id
     }
   }
 `
 
-const LoansList = ({ loans }: FindLoans) => {
-  const [deleteLoan] = useMutation(DELETE_LOAN_MUTATION, {
+const DebtsList = ({ debts }: FindDebts) => {
+  const [deleteDebt] = useMutation(DELETE_DEBT_MUTATION, {
     onCompleted: () => {
-      toast.success('Loan deleted')
+      toast.success('Debt deleted')
     },
     onError: (error) => {
       toast.error(error.message)
@@ -30,9 +30,9 @@ const LoansList = ({ loans }: FindLoans) => {
     awaitRefetchQueries: true,
   })
 
-  const onDeleteClick = (id: DeleteLoanMutationVariables['id']) => {
-    if (confirm('Are you sure you want to delete loan ' + id + '?')) {
-      deleteLoan({ variables: { id } })
+  const onDeleteClick = (id: DeleteDebtMutationVariables['id']) => {
+    if (confirm('Are you sure you want to delete debt ' + id + '?')) {
+      deleteDebt({ variables: { id } })
     }
   }
 
@@ -43,47 +43,43 @@ const LoansList = ({ loans }: FindLoans) => {
           <tr>
             <th>Id</th>
             <th>Amount</th>
+            <th>To</th>
             <th>Currency</th>
-            <th>Emi</th>
-            <th>Months</th>
-            <th>Bank name</th>
-            <th>Processed data</th>
-            <th>Emi date</th>
+            <th>Date</th>
+            <th>Interest rate</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
         <tbody>
-          {loans.map((loan) => (
-            <tr key={loan.id}>
-              <td>{truncate(loan.id)}</td>
-              <td>{truncate(loan.amount)}</td>
-              <td>{formatEnum(loan.currency)}</td>
-              <td>{truncate(loan.emi)}</td>
-              <td>{truncate(loan.months)}</td>
-              <td>{truncate(loan.bankName)}</td>
-              <td>{timeTag(loan.processedData)}</td>
-              <td>{truncate(loan.emiDate)}</td>
+          {debts.map((debt) => (
+            <tr key={debt.id}>
+              <td>{truncate(debt.id)}</td>
+              <td>{truncate(debt.amount)}</td>
+              <td>{truncate(debt.to)}</td>
+              <td>{formatEnum(debt.currency)}</td>
+              <td>{timeTag(debt.date)}</td>
+              <td>{truncate(debt.interestRate)}</td>
               <td>
                 <nav className="rw-table-actions">
                   <Link
-                    to={routes.loan({ id: loan.id })}
-                    title={'Show loan ' + loan.id + ' detail'}
+                    to={routes.debt({ id: debt.id })}
+                    title={'Show debt ' + debt.id + ' detail'}
                     className="rw-button rw-button-small"
                   >
                     Show
                   </Link>
                   <Link
-                    to={routes.editLoan({ id: loan.id })}
-                    title={'Edit loan ' + loan.id}
+                    to={routes.editDebt({ id: debt.id })}
+                    title={'Edit debt ' + debt.id}
                     className="rw-button rw-button-small rw-button-blue"
                   >
                     Edit
                   </Link>
                   <button
                     type="button"
-                    title={'Delete loan ' + loan.id}
+                    title={'Delete debt ' + debt.id}
                     className="rw-button rw-button-small rw-button-red"
-                    onClick={() => onDeleteClick(loan.id)}
+                    onClick={() => onDeleteClick(debt.id)}
                   >
                     Delete
                   </button>
@@ -97,4 +93,4 @@ const LoansList = ({ loans }: FindLoans) => {
   )
 }
 
-export default LoansList
+export default DebtsList
