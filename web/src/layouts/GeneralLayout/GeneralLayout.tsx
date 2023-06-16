@@ -1,5 +1,6 @@
 import { Link, routes } from '@redwoodjs/router'
 
+import { useAuth } from 'src/auth'
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -13,9 +14,10 @@ type GeneralLayoutProps = {
 }
 
 const GeneralLayout = ({ children }: GeneralLayoutProps) => {
+  const { isAuthenticated, logIn, logOut } = useAuth()
   return (
     <>
-      <header>
+      <header className="flex w-full justify-around">
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
@@ -41,6 +43,11 @@ const GeneralLayout = ({ children }: GeneralLayoutProps) => {
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
+        {!isAuthenticated ? (
+          <button onClick={() => logIn()}>Login</button>
+        ) : (
+          <button onClick={() => logOut()}>Logout</button>
+        )}
       </header>
       <main>{children}</main>
     </>
