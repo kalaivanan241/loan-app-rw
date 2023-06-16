@@ -22,7 +22,7 @@ model loan {
   currency      Currency @default(HKD)
   userId        String
   createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  updatedAt     DateTime @default(now()) @updatedAt
 }
 
 model debt {
@@ -34,7 +34,7 @@ model debt {
   interestRate Float
   userId       String
   createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  updatedAt    DateTime @default(now()) @updatedAt
 }
 
 enum Currency {
