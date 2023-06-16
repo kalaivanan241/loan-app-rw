@@ -14,6 +14,7 @@ import {
   CardHeader,
   CardTitle,
 } from 'src/components/ui/card'
+import LabelAndText from 'src/components/ui/LabelAndText'
 import { cn } from 'src/lib/utils'
 
 export const QUERY = gql`
@@ -41,22 +42,14 @@ export const Success = ({
         <CardDescription>Statistics</CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="mb-3 pb-3 ">
-          <div className="mb-0 pb-0">
-            <p className="text-sm font-medium leading-none">Number of Debts</p>
-            <p className="text-sm text-muted-foreground">
-              {debtStatistic.numberOfDebts}
-            </p>
-          </div>
-        </div>
-        <div className="mb-3 pb-3">
-          <div className="mb-0  pb-0">
-            <p className="text-sm font-medium leading-none">Total Amount</p>
-            <p className="text-sm text-muted-foreground">
-              {debtStatistic.totalAmount}({debtStatistic.baseCurrency})
-            </p>
-          </div>
-        </div>
+        <LabelAndText
+          label="Number of Debts"
+          text={debtStatistic.numberOfDebts}
+        />
+        <LabelAndText
+          label="Total Amount"
+          text={`${debtStatistic.totalAmount}(${debtStatistic.baseCurrency})`}
+        />
       </CardContent>
       <CardFooter>
         <Button className="w-full">

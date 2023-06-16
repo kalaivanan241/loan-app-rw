@@ -14,7 +14,7 @@ import {
   CardHeader,
   CardTitle,
 } from 'src/components/ui/card'
-import { cn } from 'src/lib/utils'
+import LabelAndText from 'src/components/ui/LabelAndText'
 
 export const QUERY = gql`
   query FindLoanStatistic {
@@ -42,34 +42,18 @@ export const Success = ({
         <CardDescription>Statistics</CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="mb-3 pb-3 ">
-          <div className="mb-0 pb-0">
-            <p className="text-sm font-medium leading-none">Number of loans</p>
-            <p className="text-sm text-muted-foreground">
-              {loanStatistic.numberOfLoans}
-            </p>
-          </div>
-        </div>
-        <div className="mb-3 pb-3 ">
-          <div className="mb-0 pb-0">
-            <p className="text-sm font-medium leading-none">
-              Total Loan Amount
-            </p>
-            <p className="text-sm text-muted-foreground">
-              {loanStatistic.totalLoanAmount}({loanStatistic.currency})
-            </p>
-          </div>
-        </div>
-        <div className="mb-3 pb-3 ">
-          <div className="mb-0 pb-0">
-            <p className="text-sm font-medium leading-none">
-              Total Monthly Emi
-            </p>
-            <p className="text-sm text-muted-foreground">
-              {loanStatistic.totalMonthlyEmi}({loanStatistic.currency})
-            </p>
-          </div>
-        </div>
+        <LabelAndText
+          label="Number of loans"
+          text={loanStatistic.numberOfLoans}
+        />
+        <LabelAndText
+          label="Total Loan Amount"
+          text={`${loanStatistic.totalLoanAmount}(${loanStatistic.currency})`}
+        />
+        <LabelAndText
+          label="Total Monthly Emi"
+          text={`${loanStatistic.totalMonthlyEmi}(${loanStatistic.currency})`}
+        />
       </CardContent>
       <CardFooter>
         <Button className="w-full">
