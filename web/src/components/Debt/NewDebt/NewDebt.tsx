@@ -1,10 +1,10 @@
+import type { CreateDebtInput } from 'types/graphql'
+
 import { navigate, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import DebtForm from 'src/components/Debt/DebtForm'
-
-import type { CreateDebtInput } from 'types/graphql'
 
 const CREATE_DEBT_MUTATION = gql`
   mutation CreateDebtMutation($input: CreateDebtInput!) {
@@ -14,7 +14,7 @@ const CREATE_DEBT_MUTATION = gql`
   }
 `
 
-const NewDebt = () => {
+const NewDebt = ({ userId }: { userId: string }) => {
   const [createDebt, { loading, error }] = useMutation(CREATE_DEBT_MUTATION, {
     onCompleted: () => {
       toast.success('Debt created')
@@ -26,7 +26,7 @@ const NewDebt = () => {
   })
 
   const onSave = (input: CreateDebtInput) => {
-    createDebt({ variables: { input } })
+    createDebt({ variables: { input: { ...input, userId } } })
   }
 
   return (

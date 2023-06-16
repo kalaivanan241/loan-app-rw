@@ -3,7 +3,11 @@ import type { QueryResolvers, MutationResolvers } from 'types/graphql'
 import { db } from 'src/lib/db'
 
 export const debts: QueryResolvers['debts'] = () => {
-  return db.debt.findMany()
+  return db.debt.findMany({
+    where: {
+      userId: context.currentUser.id,
+    },
+  })
 }
 
 export const debt: QueryResolvers['debt'] = ({ id }) => {

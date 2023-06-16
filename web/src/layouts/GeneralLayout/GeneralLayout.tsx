@@ -14,7 +14,8 @@ type GeneralLayoutProps = {
 }
 
 const GeneralLayout = ({ children }: GeneralLayoutProps) => {
-  const { isAuthenticated, logIn, logOut } = useAuth()
+  const { isAuthenticated, logIn, logOut, currentUser } = useAuth()
+  console.log(currentUser)
   return (
     <>
       <header className="flex w-full justify-around">

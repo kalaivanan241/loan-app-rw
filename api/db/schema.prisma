@@ -20,6 +20,7 @@ model loan {
   processedData DateTime
   emiDate       Int
   currency      Currency @default(HKD)
+  userId        String
 }
 
 model debt {
@@ -29,6 +30,7 @@ model debt {
   currency     Currency @default(INR)
   date         DateTime
   interestRate Float
+  userId       String
 }
 
 enum Currency {

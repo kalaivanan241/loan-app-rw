@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE `debt` ALTER COLUMN `userId` DROP DEFAULT;
+
+-- AlterTable
+ALTER TABLE `loan` ALTER COLUMN `userId` DROP DEFAULT;

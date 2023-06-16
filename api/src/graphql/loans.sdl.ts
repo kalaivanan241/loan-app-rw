@@ -8,6 +8,7 @@ export const schema = gql`
     processedData: DateTime!
     emiDate: Int!
     currency: Currency!
+    userId: String!
   }
 
   enum Currency {
@@ -28,6 +29,7 @@ export const schema = gql`
     processedData: DateTime!
     emiDate: Int!
     currency: Currency!
+    userId: String!
   }
 
   input UpdateLoanInput {

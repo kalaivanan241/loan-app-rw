@@ -6,6 +6,7 @@ export const schema = gql`
     currency: Currency!
     date: DateTime!
     interestRate: Float!
+    userId: String!
   }
 
   enum Currency {
@@ -24,6 +25,7 @@ export const schema = gql`
     currency: Currency!
     date: DateTime!
     interestRate: Float!
+    userId: String!
   }
 
   input UpdateDebtInput {

@@ -1,10 +1,10 @@
+import type { CreateLoanInput } from 'types/graphql'
+
 import { navigate, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import LoanForm from 'src/components/Loan/LoanForm'
-
-import type { CreateLoanInput } from 'types/graphql'
 
 const CREATE_LOAN_MUTATION = gql`
   mutation CreateLoanMutation($input: CreateLoanInput!) {
@@ -14,7 +14,7 @@ const CREATE_LOAN_MUTATION = gql`
   }
 `
 
-const NewLoan = () => {
+const NewLoan = ({ userId }: { userId: string }) => {
   const [createLoan, { loading, error }] = useMutation(CREATE_LOAN_MUTATION, {
     onCompleted: () => {
       toast.success('Loan created')
@@ -26,7 +26,8 @@ const NewLoan = () => {
   })
 
   const onSave = (input: CreateLoanInput) => {
-    createLoan({ variables: { input } })
+    console.log(userId)
+    createLoan({ variables: { input: { ...input, userId } } })
   }
 
   return (
