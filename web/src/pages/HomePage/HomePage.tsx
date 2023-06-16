@@ -1,19 +1,19 @@
 import { MetaTags } from '@redwoodjs/web'
 
-import DebtsCell from 'src/components/Debt/DebtsCell'
-import LoansCell from 'src/components/Loan/LoansCell'
+import DebtStatisticCell from 'src/components/Debt/DebtStatisticCell'
+import LoanStatisticCell from 'src/components/Loan/LoanStatisticCell'
 
 const HomePage = () => {
   return (
     <>
       <MetaTags title="Home" description="Home page" />
-      <div>
-        <h1>Loans</h1>
-        <LoansCell />
-      </div>
-      <div>
-        <h1>Debts</h1>
-        <DebtsCell />
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div>
+          <LoanStatisticCell />
+        </div>
+        <div>
+          <DebtStatisticCell />
+        </div>
       </div>
     </>
   )

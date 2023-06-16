@@ -11,9 +11,30 @@ export const loans: QueryResolvers['loans'] = () => {
 }
 
 export const loan: QueryResolvers['loan'] = ({ id }) => {
-  return db.loan.findUnique({
-    where: { id },
+  return db.loan.findFirst({
+    where: { id, userId: context.currentUser.id },
   })
+}
+
+export const loanStatistic: QueryResolvers['loanStatistic'] = async () => {
+  const loans = await db.loan.findMany({
+    where: {
+      userId: context.currentUser.id,
+    },
+  })
+  const numberOfLoans = loans.length
+  let totalLoanAmount = 0
+  let totalMonthlyEmi = 0
+  loans.forEach((l) => {
+    totalLoanAmount += l.amount
+    totalMonthlyEmi += l.emi
+  })
+  return {
+    numberOfLoans,
+    totalLoanAmount,
+    totalMonthlyEmi,
+    currency: 'HKD',
+  }
 }
 
 export const createLoan: MutationResolvers['createLoan'] = ({ input }) => {

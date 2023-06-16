@@ -14,9 +14,16 @@ export const schema = gql`
     INR
   }
 
+  type DebtStatistic {
+    totalAmount: Float!
+    numberOfDebts: Int!
+    baseCurrency: String!
+  }
+
   type Query {
     debts: [Debt!]! @requireAuth
     debt(id: Int!): Debt @requireAuth
+    debtStatistic: DebtStatistic @requireAuth
   }
 
   input CreateDebtInput {

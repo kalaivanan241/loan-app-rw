@@ -16,6 +16,23 @@ export const debt: QueryResolvers['debt'] = ({ id }) => {
   })
 }
 
+export const debtStatistic: QueryResolvers['debtStatistic'] = async () => {
+  const debts = await db.debt.findMany({
+    where: {
+      userId: context.currentUser.id,
+    },
+  })
+
+  const totalAmount = debts.reduce((a, d) => {
+    return a + d.amount
+  }, 0)
+  return {
+    baseCurrency: 'INR',
+    totalAmount,
+    numberOfDebts: debts.length,
+  }
+}
+
 export const createDebt: MutationResolvers['createDebt'] = ({ input }) => {
   return db.debt.create({
     data: input,

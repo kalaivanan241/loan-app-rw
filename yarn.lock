@@ -2337,16 +2337,16 @@ __metadata:
   linkType: hard
 
 "@clerk/clerk-react@npm:^4":
-  version: 4.20.0
-  resolution: "@clerk/clerk-react@npm:4.20.0"
+  version: 4.20.1
+  resolution: "@clerk/clerk-react@npm:4.20.1"
   dependencies:
-    "@clerk/shared": ^0.19.0
+    "@clerk/shared": ^0.19.1
     "@clerk/types": ^3.42.0
     swr: 1.3.0
     tslib: 2.4.1
   peerDependencies:
     react: ">=16"
-  checksum: 7d14059bf839ac45978a1f48267a2b9dbe5150409606623aef92d7c1b830a295945299b2dcf136c1fc7ff73ada1b361f49b603f190612034eb5b5955a4efff4e
+  checksum: f9b11421d2976a8525161bf07852907a32ed455ea65c6691ac9b1d70edf6c41c163a48f001cc55c29e0696b2bd9f64ada4a2674a7c112da22b9d54cb8d992a4b
   languageName: node
   linkType: hard
 
@@ -2367,16 +2367,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/shared@npm:^0.19.0":
-  version: 0.19.0
-  resolution: "@clerk/shared@npm:0.19.0"
+"@clerk/shared@npm:^0.19.1":
+  version: 0.19.1
+  resolution: "@clerk/shared@npm:0.19.1"
   dependencies:
     glob-to-regexp: 0.4.1
     js-cookie: 3.0.1
     swr: 1.3.0
   peerDependencies:
     react: ">=16"
-  checksum: e92be9917ca1b1eeb700549a290dbfeb09f979f8085d8f62fedfa22a682dfa0bf65b4ef3601db988f83d03e3453f28aa8f6562f3d9bd3ad90433c7c8c6a06ced
+  checksum: 576766ff15f7bd49f1ec0e591a6a54af888050f8f0bb54cbf35470c273f3f9d5a20c34efac1b5d2d70749d8f9b4c500df8bea37aed9235b69e1b8f59130aa8b0
   languageName: node
   linkType: hard
 
@@ -5024,7 +5024,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@radix-ui/react-slot@npm:1.0.2":
+"@radix-ui/react-slot@npm:1.0.2, @radix-ui/react-slot@npm:^1.0.2":
   version: 1.0.2
   resolution: "@radix-ui/react-slot@npm:1.0.2"
   dependencies:
@@ -8737,11 +8737,11 @@ __metadata:
   linkType: hard
 
 "acorn@npm:^8.0.4, acorn@npm:^8.1.0, acorn@npm:^8.4.1, acorn@npm:^8.5.0, acorn@npm:^8.7.1, acorn@npm:^8.8.0, acorn@npm:^8.8.1, acorn@npm:^8.8.2":
-  version: 8.8.2
-  resolution: "acorn@npm:8.8.2"
+  version: 8.9.0
+  resolution: "acorn@npm:8.9.0"
   bin:
     acorn: bin/acorn
-  checksum: b5c54e736af5ed753911c6752fafd02d0a74cf4d55be606bd81fe71faba4f986dc090952329931ac2aba165803fd0005c59eeef08f9c6c689e8dc420031f3df0
+  checksum: 5b51689d56f1ca5d6ea1fa58af478affd8d3396403637abcbc7caf28e1a47beb537cf1654f537b6cf4c73377f3e1aa99fd4a50674e64daefe08cb25c799ded28
   languageName: node
   linkType: hard
 
@@ -12802,9 +12802,9 @@ __metadata:
   linkType: hard
 
 "dotenv@npm:^16.0.0":
-  version: 16.1.4
-  resolution: "dotenv@npm:16.1.4"
-  checksum: 47cf5ce136bf2a5e8402fc9855d95848973cfee423fe0adf1a7cd565c842c51e5b8c95889b075140c26b092b74dd2a319970ff496cd7159ab3f1fc58edfc0ede
+  version: 16.2.0
+  resolution: "dotenv@npm:16.2.0"
+  checksum: 4191f5fbe5e0c5fd570c4cd9d34f47a091226e4c3179275487a060e7c6a88c619988ca9b4c6371fd677575b2329ddd4679873a95314a1102493591b9df0f5ed9
   languageName: node
   linkType: hard
 
@@ -24901,22 +24901,22 @@ __metadata:
   linkType: hard
 
 "typescript@npm:5.1.3":
-  version: 5.0.4
-  resolution: "typescript@npm:5.0.4"
+  version: 5.1.3
+  resolution: "typescript@npm:5.1.3"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 2f5bd1cead194905957cb34e220b1d6ff1662399adef8ec1864f74620922d860ee35b6e50eafb3b636ea6fd437195e454e1146cb630a4236b5095ed7617395c2
+  checksum: 1faba8d5ffd4717864ddce767613c5ab77c1c8510c1ce21dc9b112a4c662357b9338dc0a6121615266d3a44ebec699f115ef2dabf18d9d7341ea1675692b9b24
   languageName: node
   linkType: hard
 
 "typescript@patch:typescript@5.1.3#~builtin<compat/typescript>":
-  version: 5.0.4
-  resolution: "typescript@patch:typescript@npm%3A5.0.4#~builtin<compat/typescript>::version=5.0.4&hash=b5f058"
+  version: 5.1.3
+  resolution: "typescript@patch:typescript@npm%3A5.1.3#~builtin<compat/typescript>::version=5.1.3&hash=5da071"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: c3f7b80577bddf6fab202a7925131ac733bfc414aec298c2404afcddc7a6f242cfa8395cf2d48192265052e11a7577c27f6e5fac8d8fe6a6602023c83d6b3292
+  checksum: 769c5a11a9d5207ae5ce4c84b5c7a72ad92a28877a0061881ccfb326a43a1a1de79c4daff2f9d74720137744cfc9332fddbfbc4c3973c1e859b2f977f5d11b72
   languageName: node
   linkType: hard
 
@@ -25709,6 +25709,7 @@ __metadata:
     "@radix-ui/react-accordion": ^1.1.2
     "@radix-ui/react-menubar": ^1.0.3
     "@radix-ui/react-navigation-menu": ^1.1.3
+    "@radix-ui/react-slot": ^1.0.2
     "@redwoodjs/auth-clerk-web": 5.3.0
     "@redwoodjs/forms": 5.3.0
     "@redwoodjs/router": 5.3.0

@@ -16,9 +16,17 @@ export const schema = gql`
     INR
   }
 
+  type LoanStatistic {
+    numberOfLoans: Int!
+    totalLoanAmount: Float!
+    currency: String!
+    totalMonthlyEmi: Float!
+  }
+
   type Query {
     loans: [Loan!]! @requireAuth
     loan(id: Int!): Loan @requireAuth
+    loanStatistic: LoanStatistic @requireAuth
   }
 
   input CreateLoanInput {

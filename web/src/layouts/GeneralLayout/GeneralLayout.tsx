@@ -17,7 +17,7 @@ const GeneralLayout = ({ children }: GeneralLayoutProps) => {
   const { isAuthenticated, logIn, logOut, currentUser } = useAuth()
   console.log(currentUser)
   return (
-    <>
+    <div className="container">
       <header className="flex w-full justify-around">
         <NavigationMenu>
           <NavigationMenuList>
@@ -50,8 +50,8 @@ const GeneralLayout = ({ children }: GeneralLayoutProps) => {
           <button onClick={() => logOut()}>Logout</button>
         )}
       </header>
-      <main>{children}</main>
-    </>
+      <main className="mt-10">{children}</main>
+    </div>
   )
 }
 
