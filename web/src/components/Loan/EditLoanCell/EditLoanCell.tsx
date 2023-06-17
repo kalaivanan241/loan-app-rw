@@ -18,6 +18,9 @@ export const QUERY = gql`
       processedData
       emiDate
       currency
+      outstandingInstallments
+      outstandingInstallmentAmount
+      interestRate
     }
   }
 `
@@ -32,6 +35,9 @@ const UPDATE_LOAN_MUTATION = gql`
       processedData
       emiDate
       currency
+      outstandingInstallments
+      outstandingInstallmentAmount
+      interestRate
     }
   }
 `

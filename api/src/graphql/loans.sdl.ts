@@ -9,6 +9,11 @@ export const schema = gql`
     emiDate: Int!
     currency: Currency!
     userId: String!
+    outstandingInstallments: Int!
+    outstandingInstallmentAmount: Float!
+    interestRate: Float!
+    createdAt: DateTime
+    updatedAt: DateTime
   }
 
   enum Currency {
@@ -21,6 +26,7 @@ export const schema = gql`
     totalLoanAmount: Float!
     currency: String!
     totalMonthlyEmi: Float!
+    totalOutstandingAmount: Float!
   }
 
   type Query {
@@ -38,6 +44,9 @@ export const schema = gql`
     emiDate: Int!
     currency: Currency!
     userId: String!
+    outstandingInstallments: Int!
+    outstandingInstallmentAmount: Float!
+    interestRate: Float!
   }
 
   input UpdateLoanInput {
@@ -48,6 +57,9 @@ export const schema = gql`
     processedData: DateTime
     emiDate: Int
     currency: Currency!
+    outstandingInstallments: Int!
+    outstandingInstallmentAmount: Float!
+    interestRate: Float!
   }
 
   type Mutation {

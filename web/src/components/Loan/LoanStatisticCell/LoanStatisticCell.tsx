@@ -23,6 +23,7 @@ export const QUERY = gql`
       totalLoanAmount
       currency
       totalMonthlyEmi
+      totalOutstandingAmount
     }
   }
 `
@@ -39,9 +40,8 @@ export const Success = ({
     <Card>
       <CardHeader>
         <CardTitle>Loans</CardTitle>
-        <CardDescription>Statistics</CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="grid grid-cols-2">
         <LabelAndText
           label="Number of loans"
           text={loanStatistic.numberOfLoans}
@@ -51,14 +51,18 @@ export const Success = ({
           text={`${loanStatistic.totalLoanAmount}(${loanStatistic.currency})`}
         />
         <LabelAndText
+          label="Outstanding Amount"
+          text={`${loanStatistic.totalOutstandingAmount}(${loanStatistic.currency})`}
+        />
+        <LabelAndText
           label="Total Monthly Emi"
           text={`${loanStatistic.totalMonthlyEmi}(${loanStatistic.currency})`}
         />
       </CardContent>
       <CardFooter>
-        <Button className="w-full">
-          <Link to={routes.loans()}>View All</Link>
-        </Button>
+        <Link to={routes.loans()}>
+          <Button className="w-full">View All</Button>
+        </Link>
       </CardFooter>
     </Card>
   )

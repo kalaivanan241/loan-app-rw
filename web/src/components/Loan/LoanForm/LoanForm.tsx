@@ -1,3 +1,5 @@
+import type { EditLoanById, UpdateLoanInput } from 'types/graphql'
+
 import {
   Form,
   FormError,
@@ -9,8 +11,6 @@ import {
   Submit,
   RadioField,
 } from '@redwoodjs/forms'
-
-import type { EditLoanById, UpdateLoanInput } from 'types/graphql'
 import type { RWGqlError } from '@redwoodjs/forms'
 
 const formatDatetime = (value) => {
@@ -113,11 +113,29 @@ const LoanForm = (props: LoanFormProps) => {
         <FieldError name="emi" className="rw-field-error" />
 
         <Label
+          name="interestRate"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Interest Rate
+        </Label>
+
+        <TextField
+          name="interestRate"
+          defaultValue={props.loan?.interestRate}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ valueAsNumber: true, required: true }}
+        />
+
+        <FieldError name="interestRate" className="rw-field-error" />
+
+        <Label
           name="months"
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Months
+          Installments
         </Label>
 
         <NumberField
@@ -129,6 +147,45 @@ const LoanForm = (props: LoanFormProps) => {
         />
 
         <FieldError name="months" className="rw-field-error" />
+
+        <Label
+          name="outstandingInstallments"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Outstanding Installments
+        </Label>
+
+        <NumberField
+          name="outstandingInstallments"
+          defaultValue={props.loan?.outstandingInstallments}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
+
+        <FieldError name="outstandingInstallments" className="rw-field-error" />
+
+        <Label
+          name="outstandingInstallmentAmount"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Outstanding Installment Amount
+        </Label>
+
+        <TextField
+          name="outstandingInstallmentAmount"
+          defaultValue={props.loan?.outstandingInstallmentAmount}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ valueAsNumber: true, required: true }}
+        />
+
+        <FieldError
+          name="outstandingInstallmentAmount"
+          className="rw-field-error"
+        />
 
         <Label
           name="bankName"

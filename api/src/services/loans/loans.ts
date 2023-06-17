@@ -25,15 +25,18 @@ export const loanStatistic: QueryResolvers['loanStatistic'] = async () => {
   const numberOfLoans = loans.length
   let totalLoanAmount = 0
   let totalMonthlyEmi = 0
+  let totalOutstandingAmount = 0
   loans.forEach((l) => {
     totalLoanAmount += l.amount
     totalMonthlyEmi += l.emi
+    totalOutstandingAmount += l.outstandingInstallmentAmount
   })
   return {
     numberOfLoans,
     totalLoanAmount,
     totalMonthlyEmi,
     currency: 'HKD',
+    totalOutstandingAmount,
   }
 }
 

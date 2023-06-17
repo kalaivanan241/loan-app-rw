@@ -1,3 +1,5 @@
+import type { EditDebtById, UpdateDebtInput } from 'types/graphql'
+
 import {
   Form,
   FormError,
@@ -6,11 +8,10 @@ import {
   TextField,
   RadioField,
   DatetimeLocalField,
-  Submit,
 } from '@redwoodjs/forms'
-
-import type { EditDebtById, UpdateDebtInput } from 'types/graphql'
 import type { RWGqlError } from '@redwoodjs/forms'
+
+import { Button } from 'src/components/ui/button'
 
 const formatDatetime = (value) => {
   if (value) {
@@ -149,9 +150,9 @@ const DebtForm = (props: DebtFormProps) => {
         <FieldError name="interestRate" className="rw-field-error" />
 
         <div className="rw-button-group">
-          <Submit disabled={props.loading} className="rw-button rw-button-blue">
+          <Button type="submit" disabled={props.loading}>
             Save
-          </Submit>
+          </Button>
         </div>
       </Form>
     </div>

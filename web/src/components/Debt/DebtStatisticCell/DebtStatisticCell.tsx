@@ -39,9 +39,8 @@ export const Success = ({
     <Card>
       <CardHeader>
         <CardTitle>Debts</CardTitle>
-        <CardDescription>Statistics</CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="grid grid-cols-2">
         <LabelAndText
           label="Number of Debts"
           text={debtStatistic.numberOfDebts}
@@ -52,9 +51,9 @@ export const Success = ({
         />
       </CardContent>
       <CardFooter>
-        <Button className="w-full">
-          <Link to={routes.debts()}>View All</Link>
-        </Button>
+        <Link to={routes.debts()}>
+          <Button className="w-full">View All</Button>
+        </Link>
       </CardFooter>
     </Card>
   )

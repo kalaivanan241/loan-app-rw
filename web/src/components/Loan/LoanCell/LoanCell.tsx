@@ -15,6 +15,9 @@ export const QUERY = gql`
       processedData
       emiDate
       currency
+      outstandingInstallments
+      outstandingInstallmentAmount
+      interestRate
     }
   }
 `

@@ -12,17 +12,20 @@ generator client {
 
 // Define your own datamodels here and run `yarn redwood prisma migrate dev`
 model loan {
-  id            Int      @id @default(autoincrement())
-  amount        Float
-  emi           Float
-  months        Int
-  bankName      String
-  processedData DateTime
-  emiDate       Int
-  currency      Currency @default(HKD)
-  userId        String
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @default(now()) @updatedAt
+  id                           Int      @id @default(autoincrement())
+  amount                       Float
+  emi                          Float
+  months                       Int
+  bankName                     String
+  processedData                DateTime
+  emiDate                      Int
+  currency                     Currency @default(HKD)
+  userId                       String
+  outstandingInstallments      Int
+  outstandingInstallmentAmount Float
+  interestRate                 Float
+  createdAt                    DateTime @default(now())
+  updatedAt                    DateTime @default(now()) @updatedAt
 }
 
 model debt {
