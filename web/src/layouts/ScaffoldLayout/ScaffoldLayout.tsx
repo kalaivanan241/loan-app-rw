@@ -1,6 +1,8 @@
 import { Link, routes } from '@redwoodjs/router'
 import { Toaster } from '@redwoodjs/web/toast'
 
+import { Button } from 'src/components/ui/button'
+
 export type LayoutProps = {
   title: string
   titleTo: string
@@ -25,8 +27,10 @@ const ScaffoldLayout = ({
             {title}
           </Link>
         </h1>
-        <Link to={routes[buttonTo]()} className="rw-button rw-button-green">
-          <div className="rw-button-icon">+</div> {buttonLabel}
+        <Link to={routes[buttonTo]()}>
+          <Button>
+            <div className="rw-button-icon">+</div> {buttonLabel}
+          </Button>
         </Link>
       </header>
       <main className="rw-main">{children}</main>
