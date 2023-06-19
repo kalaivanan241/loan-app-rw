@@ -24,11 +24,14 @@ const DELETE_LOAN_MUTATION = gql`
   }
 `
 
+
+
 interface Props {
-  loan: NonNullable<FindLoanById['loan']>
+  loan: NonNullable<FindLoanById['loan']>;
+  onUpdateOutstanding: (id: DeleteLoanMutationVariables['id']) => void;
 }
 
-const Loan = ({ loan }: Props) => {
+const Loan = ({ loan, onUpdateOutstanding }: Props) => {
   const [deleteLoan] = useMutation(DELETE_LOAN_MUTATION, {
     onCompleted: () => {
       toast.success('Loan deleted')
@@ -78,8 +81,11 @@ const Loan = ({ loan }: Props) => {
           <Link to={routes.editLoan({ id: loan.id })} className="mr-3">
             <Button>Edit</Button>
           </Link>
-          <Button variant="outline" onClick={() => onDeleteClick(loan.id)}>
+          <Button variant="destructive" className="mr-3" onClick={() => onDeleteClick(loan.id)}>
             Delete
+          </Button>
+          <Button variant="outline" className="mr-3" onClick={() => onUpdateOutstanding(loan.id)}>
+            Update Outstanding Amount
           </Button>
         </CardFooter>
       </Card>

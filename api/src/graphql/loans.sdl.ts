@@ -66,5 +66,6 @@ export const schema = gql`
     createLoan(input: CreateLoanInput!): Loan! @requireAuth
     updateLoan(id: Int!, input: UpdateLoanInput!): Loan! @requireAuth
     deleteLoan(id: Int!): Loan! @requireAuth
+    updateOutstandingAmount(id: Int): [Loan]! @requireAuth
   }
 `

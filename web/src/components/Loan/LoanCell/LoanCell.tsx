@@ -1,8 +1,9 @@
-import type { FindLoanById } from 'types/graphql'
+import type { FindLoanById, UpdateLoanMutationVariables } from 'types/graphql'
 
-import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
+import { type CellSuccessProps, type CellFailureProps, useMutation } from '@redwoodjs/web'
 
 import Loan from 'src/components/Loan/Loan'
+import { toast } from '@redwoodjs/web/toast'
 
 export const QUERY = gql`
   query FindLoanById($id: Int!) {
@@ -22,6 +23,14 @@ export const QUERY = gql`
   }
 `
 
+const UPDATE_OUTSTANDING_LOAN_MUTATION = gql`
+  mutation UpdateLoanMutation($id: Int!) {
+    updateOutstandingAmount(id: $id) {
+      id
+    }
+  }
+`
+
 export const Loading = () => <div>Loading...</div>
 
 export const Empty = () => <div>Loan not found</div>
@@ -31,5 +40,21 @@ export const Failure = ({ error }: CellFailureProps) => (
 )
 
 export const Success = ({ loan }: CellSuccessProps<FindLoanById>) => {
-  return <Loan loan={loan} />
+  const [updateOutstanding] = useMutation(UPDATE_OUTSTANDING_LOAN_MUTATION, {
+    onCompleted: () => {
+      toast.success('Loan outstanding amount updated')
+    },
+    onError: (error) => {
+      toast.error(error.message)
+    },
+    refetchQueries: [{ query: QUERY, variables: { id: loan.id } }],
+    awaitRefetchQueries: true,
+  })
+
+  const onUpdateOutstanding = (id: UpdateLoanMutationVariables['id']) => {
+    if (confirm('Are you sure you want to update outstanding loan ' + id + '?')) {
+      updateOutstanding({ variables: { id } })
+    }
+  }
+  return <Loan loan={loan} onUpdateOutstanding={(id)=>onUpdateOutstanding(id)} />
 }
