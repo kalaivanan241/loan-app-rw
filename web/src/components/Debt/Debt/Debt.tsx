@@ -4,6 +4,7 @@ import { Link, routes, navigate } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
+import { Button } from 'src/components/ui/button'
 import { formatEnum, timeTag } from 'src/lib/formatters'
 
 const DELETE_DEBT_MUTATION = gql`
@@ -73,19 +74,17 @@ const Debt = ({ debt }: Props) => {
         </table>
       </div>
       <nav className="rw-button-group">
-        <Link
-          to={routes.editDebt({ id: debt.id })}
-          className="rw-button rw-button-blue"
-        >
-          Edit
+        <Link to={routes.editDebt({ id: debt.id })}>
+          <Button>Edit</Button>
         </Link>
-        <button
+        <Button
           type="button"
-          className="rw-button rw-button-red"
           onClick={() => onDeleteClick(debt.id)}
+          variant="destructive"
+          className="mx-3"
         >
           Delete
-        </button>
+        </Button>
       </nav>
     </>
   )

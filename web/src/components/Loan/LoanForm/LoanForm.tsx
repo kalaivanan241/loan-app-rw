@@ -8,10 +8,11 @@ import {
   TextField,
   NumberField,
   DatetimeLocalField,
-  Submit,
   RadioField,
 } from '@redwoodjs/forms'
 import type { RWGqlError } from '@redwoodjs/forms'
+
+import { Button } from 'src/components/ui/button'
 
 const formatDatetime = (value) => {
   if (value) {
@@ -242,9 +243,9 @@ const LoanForm = (props: LoanFormProps) => {
         <FieldError name="emiDate" className="rw-field-error" />
 
         <div className="rw-button-group">
-          <Submit disabled={props.loading} className="rw-button rw-button-blue">
+          <Button type="submit" disabled={props.loading}>
             Save
-          </Submit>
+          </Button>
         </div>
       </Form>
     </div>
