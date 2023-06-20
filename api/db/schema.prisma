@@ -40,7 +40,24 @@ model debt {
   updatedAt    DateTime @default(now()) @updatedAt
 }
 
+model account {
+  id            Int         @id @default(autoincrement())
+  currency      Currency    @default(INR)
+  type          AccountType
+  name          String
+  accountNumber String
+  userId        String
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @default(now()) @updatedAt
+}
+
 enum Currency {
   HKD
   INR
+}
+
+enum AccountType {
+  BANK
+  BROKERAGE
+  INSURANCE
 }

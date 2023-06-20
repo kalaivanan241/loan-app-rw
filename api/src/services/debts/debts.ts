@@ -35,7 +35,7 @@ export const debtStatistic: QueryResolvers['debtStatistic'] = async () => {
 
 export const createDebt: MutationResolvers['createDebt'] = ({ input }) => {
   return db.debt.create({
-    data: input,
+    data: { ...input, userId: context.currentUser.id },
   })
 }
 

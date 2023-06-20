@@ -31,6 +31,12 @@ const Routes = () => {
           <Route path="/debts/{id:Int}" page={DebtDebtPage} name="debt" />
           <Route path="/debts" page={DebtDebtsPage} name="debts" />
         </Set>
+        <Set wrap={ScaffoldLayout} title="Accounts" titleTo="accounts" buttonLabel="New Account" buttonTo="newAccount">
+          <Route path="/accounts/new" page={AccountNewAccountPage} name="newAccount" />
+          <Route path="/accounts/{id:Int}/edit" page={AccountEditAccountPage} name="editAccount" />
+          <Route path="/accounts/{id:Int}" page={AccountAccountPage} name="account" />
+          <Route path="/accounts" page={AccountAccountsPage} name="accounts" />
+        </Set>
       </Set>
       <Route notfound page={NotFoundPage} />
     </Router>

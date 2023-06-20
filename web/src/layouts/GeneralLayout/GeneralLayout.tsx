@@ -48,6 +48,13 @@ const GeneralLayout = ({ children }: GeneralLayoutProps) => {
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link to={routes.accounts()}>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  Accounts
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
         {!isAuthenticated ? (

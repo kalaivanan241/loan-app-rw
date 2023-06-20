@@ -28,7 +28,7 @@ export const QUERY = gql`
 `
 
 const UPDATE_OUTSTANDING_LOAN_MUTATION = gql`
-  mutation UpdateLoanMutation($id: Int!) {
+  mutation UpdateOutstandingLoanMutation($id: Int!) {
     updateOutstandingAmount(id: $id) {
       id
     }
