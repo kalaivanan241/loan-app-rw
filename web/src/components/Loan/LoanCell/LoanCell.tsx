@@ -1,9 +1,13 @@
 import type { FindLoanById, UpdateLoanMutationVariables } from 'types/graphql'
 
-import { type CellSuccessProps, type CellFailureProps, useMutation } from '@redwoodjs/web'
+import {
+  type CellSuccessProps,
+  type CellFailureProps,
+  useMutation,
+} from '@redwoodjs/web'
+import { toast } from '@redwoodjs/web/toast'
 
 import Loan from 'src/components/Loan/Loan'
-import { toast } from '@redwoodjs/web/toast'
 
 export const QUERY = gql`
   query FindLoanById($id: Int!) {
@@ -52,9 +56,13 @@ export const Success = ({ loan }: CellSuccessProps<FindLoanById>) => {
   })
 
   const onUpdateOutstanding = (id: UpdateLoanMutationVariables['id']) => {
-    if (confirm('Are you sure you want to update outstanding loan ' + id + '?')) {
+    if (
+      confirm('Are you sure you want to update outstanding loan ' + id + '?')
+    ) {
       updateOutstanding({ variables: { id } })
     }
   }
-  return <Loan loan={loan} onUpdateOutstanding={(id)=>onUpdateOutstanding(id)} />
+  return (
+    <Loan loan={loan} onUpdateOutstanding={(id) => onUpdateOutstanding(id)} />
+  )
 }

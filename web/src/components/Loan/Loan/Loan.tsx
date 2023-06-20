@@ -24,11 +24,9 @@ const DELETE_LOAN_MUTATION = gql`
   }
 `
 
-
-
 interface Props {
-  loan: NonNullable<FindLoanById['loan']>;
-  onUpdateOutstanding: (id: DeleteLoanMutationVariables['id']) => void;
+  loan: NonNullable<FindLoanById['loan']>
+  onUpdateOutstanding: (id: DeleteLoanMutationVariables['id']) => void
 }
 
 const Loan = ({ loan, onUpdateOutstanding }: Props) => {
@@ -75,17 +73,27 @@ const Loan = ({ loan, onUpdateOutstanding }: Props) => {
               label="Outstanding Installments"
               text={loan.outstandingInstallments}
             />
+            <LabelAndText label="Processed Date" text={loan.processedData} />
+            <LabelAndText label="Emi Date" text={loan.emiDate} />
           </div>
         </CardContent>
         <CardFooter>
           <Link to={routes.editLoan({ id: loan.id })} className="mr-3">
             <Button>Edit</Button>
           </Link>
-          <Button variant="destructive" className="mr-3" onClick={() => onDeleteClick(loan.id)}>
+          <Button
+            variant="destructive"
+            className="mr-3"
+            onClick={() => onDeleteClick(loan.id)}
+          >
             Delete
           </Button>
-          <Button variant="outline" className="mr-3" onClick={() => onUpdateOutstanding(loan.id)}>
-            Update Outstanding Amount
+          <Button
+            variant="outline"
+            className="mr-3"
+            onClick={() => onUpdateOutstanding(loan.id)}
+          >
+            Update
           </Button>
         </CardFooter>
       </Card>

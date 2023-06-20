@@ -19,21 +19,24 @@ const ScaffoldLayout = ({
   children,
 }: LayoutProps) => {
   return (
-    <div className="rw-scaffold">
+    <div>
       <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
-      <header className="rw-header">
-        <h1 className="rw-heading rw-heading-primary">
-          <Link to={routes[titleTo]()} className="rw-link">
+      <header className="flex items-center justify-between py-3">
+        <h1 className="text-xl font-bold no-underline">
+          <Link
+            to={routes[titleTo]()}
+            className="text-gray-800 no-underline hover:underline"
+          >
             {title}
           </Link>
         </h1>
         <Link to={routes[buttonTo]()}>
           <Button>
-            <div className="rw-button-icon">+</div> {buttonLabel}
+            <div>+</div> {buttonLabel}
           </Button>
         </Link>
       </header>
-      <main className="rw-main">{children}</main>
+      <main>{children}</main>
     </div>
   )
 }

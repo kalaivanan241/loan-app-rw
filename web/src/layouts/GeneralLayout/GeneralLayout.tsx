@@ -1,6 +1,7 @@
 import { Link, routes } from '@redwoodjs/router'
 
 import { useAuth } from 'src/auth'
+import { Avatar, AvatarFallback, AvatarImage } from 'src/components/ui/avatar'
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -8,6 +9,11 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from 'src/components/ui/navigation-menu'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from 'src/components/ui/popover'
 
 type GeneralLayoutProps = {
   children?: React.ReactNode
@@ -18,7 +24,7 @@ const GeneralLayout = ({ children }: GeneralLayoutProps) => {
   console.log(currentUser)
   return (
     <div className="container">
-      <header className="flex w-full justify-around">
+      <header className="border-b-1 border-grey-500 flex w-full justify-around rounded-md border-solid py-1">
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
@@ -47,7 +53,24 @@ const GeneralLayout = ({ children }: GeneralLayoutProps) => {
         {!isAuthenticated ? (
           <button onClick={() => logIn()}>Login</button>
         ) : (
-          <button onClick={() => logOut()}>Logout</button>
+          <Popover>
+            <PopoverTrigger asChild>
+              <Avatar>
+                <AvatarImage
+                  src={currentUser.imageUrl as string}
+                  alt="@shadcn"
+                />
+                <AvatarFallback>
+                  {(currentUser.firstName as string)[0]}
+                </AvatarFallback>
+              </Avatar>
+            </PopoverTrigger>
+            <PopoverContent className="w-60">
+              <div className="flex flex-col">
+                <button onClick={() => logOut()}>Logout</button>
+              </div>
+            </PopoverContent>
+          </Popover>
         )}
       </header>
       <main className="mt-10">{children}</main>
